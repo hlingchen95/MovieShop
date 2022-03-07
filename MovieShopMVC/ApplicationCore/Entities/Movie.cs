@@ -30,6 +30,8 @@ namespace ApplicationCore.Entities
 
         public decimal? Rating { get; set; }
 
+        public ICollection<Trailer> Trailers { get; set; }
+
         
     }
 }
