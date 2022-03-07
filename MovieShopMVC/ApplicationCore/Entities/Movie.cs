@@ -32,6 +32,6 @@ namespace ApplicationCore.Entities
 
         public ICollection<Trailer> Trailers { get; set; }
 
-        
+
     }
 }

@@ -24,12 +24,12 @@ namespace Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
-            modelBuilder.Entity<Trailer>(ConfigureTrailor);
+            modelBuilder.Entity<Trailer>(ConfigureTrailer);
         }
 
-        private void ConfigureTrailor(EntityTypeBuilder<Trailer> builder)
+        private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
         {
-            builder.ToTable("Trailor");
+            builder.ToTable("Trailer");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.TrailerUrl).HasMaxLength(256);
             builder.Property(t => t.Name).HasMaxLength(256);
