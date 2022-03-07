@@ -25,6 +25,15 @@ namespace Infrastructure.Data
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
+            modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
+        }
+
+        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> modelBuiler)
+        {
+            modelBuiler.ToTable("MovieGenre");
+            modelBuiler.HasKey(mg => new { mg.MovieId, mg.GenreId });
+            modelBuiler.HasOne(m => m.Movie).WithMany(m => m.Genres).HasForeignKey(m => m.MovieId);
+            modelBuiler.HasOne(m => m.Genre).WithMany(m => m.Movies).HasForeignKey(m => m.GenreId);
         }
 
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
