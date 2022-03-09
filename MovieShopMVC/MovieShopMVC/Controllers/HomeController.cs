@@ -15,10 +15,10 @@ namespace MovieShopMVC.Controllers
         }
         
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             //var movieService = new MovieService();
-            var movies = _movieService.GetTop30GrossingMovies();
+            var movies = await _movieService.GetTop30GrossingMovies();
 
             return View(movies);
         }

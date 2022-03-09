@@ -1,5 +1,90 @@
 ﻿@model ApplicationCore.Models.MovieDetailsModel
 
-<h2>Movie Details</h2>
 
-<h2>@Model.Title</h2>
+<head>
+<style>
+    .city {
+     background-image: url('https://media.istockphoto.com/photos/dark-black-and-blue-grungy-wall-background-for-display-or-montage-of-picture-id1150477705?k=20&m=1150477705&s=612x612&w=0&h=Yrqw1w6bEJ40kZFTSovkLtu4VE52zLgl-n6AE1t2BuM=');
+    color: white;
+  
+    margin: 20px;
+     padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="city">
+    <div class="grid-container">
+        <div class="row align-content-center">
+            <div class="col text-end">
+                <img src="@Model.PosterUrl" alt=@Model.Title width="150">
+            </div>
+            <div class="col">
+                <h3>@Model.Title</h3>
+               
+                <div>
+                    @foreach (var genre in Model.Genres)
+                    {
+                        <span class="badge bg-secondary">@genre.Name</span>                     
+                    }
+                </div>
+                <div>
+                    <p>
+                        @Model.Rating
+                        @Model.Overview
+                    </p>
+                </div>
+            </div>             
+            <div class="col">
+                <div class="d-grid gap-2 col-2 mx-auto">
+                    <button class="btn btn-primary btn-sm" type="button">Review</button>
+                    <button class="btn btn-secondary btn-sm" type="button">Buy</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class = "row">
+    <div class="col-5">
+        <h3>MOVIE FACTS</h3>
+         <div class="d-flex flex-column bd-highlight mb-3">
+            <div class="p-2 bd-highlight border-bottom">
+                Release Date
+                <span class="badge bg-secondary">@Model.ReleaseDate</span> 
+            </div>
+            <div class="p-2 bd-highlight border-bottom">
+                Run Time
+                <span class="badge bg-secondary">@Model.RunTime</span> 
+            </div>
+            <div class="p-2 bd-highlight border-bottom">
+                Box Office
+                <span class="badge bg-secondary">@Model.Price</span> 
+            </div>
+            <div class="p-2 bd-highlight border-bottom">
+                Budget
+                <span class="badge bg-secondary">@Model.Budget</span> 
+            </div>
+        </div>
+        <br />
+        <h3>TRAILERS</h3>
+        <div class="d-flex flex-column bd-highlight mb-3">
+            @foreach(var traiter in Model.Trailers){
+                <a href="@traiter.TrailerUrl">@traiter.Name</a>
+            }
+            
+        </div>
+    </div>
+    <div class="col">
+        <h3>CAST</h3>
+          @foreach(var cast in Model.Casts)
+          {
+               <div class="row p-2 bd-highlight border-bottom">
+                   <div class="rounded col"><img src="@cast.ProfilePath" alt=@cast.Name height=40></div>
+                   <div class="col" >@cast.Name</div>
+                   <div class="col">@cast.Character</div>
+               </div>
+          }
+    </div>
+</div>
+</body>
