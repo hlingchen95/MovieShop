@@ -17,18 +17,18 @@ namespace Infrastructure.Repositories
 
         }
 
-        IEnumerable<Movie> IMovieRepository.GetTop30RevenueMovies()
+        public async Task<IEnumerable<Movie>> GetTop30RevenueMovies()
         {
-            var movies = _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30);
+            var movies =await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
             return movies;
         }
 
-        public override Movie GetById(int id)
+        public override async Task<Movie> GetById(int id)
         {
-            var movieDetails= _dbContext.Movies.Include(m => m.Genres).ThenInclude(m => m.Genre)
+            var movieDetails= await _dbContext.Movies.Include(m => m.Genres).ThenInclude(m => m.Genre)
                 .Include(m => m.MovieCasts).ThenInclude(m => m.Cast)
                 .Include(m => m.Trailers)
-                .FirstOrDefault(m =>m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             return movieDetails;
         }
     }

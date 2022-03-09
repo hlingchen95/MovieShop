@@ -11,6 +11,6 @@ namespace ApplicationCore.Contracts.Services
     {
         List<MovieCardModel> GetTop30GrossingMovies();
 
-        MovieDetailsModel GetMovieDetails(int id);
+        Task<MovieDetailsModel> GetMovieDetails(int id);
     }
 }
