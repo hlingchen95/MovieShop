@@ -15,7 +15,8 @@ namespace MovieShopMVC.Controllers
 
         public IActionResult Details(int id)
         {
-            return View();
+            var movieDetails = _movieService.GetMovieDetails(id);
+            return View(movieDetails);
         }
     }
 }
