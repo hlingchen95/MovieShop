@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
+using ApplicationCore.Entities;
 
 namespace Infrastructure.Services
 {
@@ -18,7 +19,7 @@ namespace Infrastructure.Services
         {
             _userRepository = userRepository;
         }
-        public async Task<bool> CreateUser(RegisterModel model)
+        public async Task<int> CreateUser(RegisterModel model)
         {
             var dbUser = await _userRepository.GetUserByEmail(model.Email);
             if (dbUser == null)
@@ -26,7 +27,22 @@ namespace Infrastructure.Services
                 throw new Exception("Email already register,try to login");
             }
 
-            
+            var salt = GetRandomSalt();
+            var hashedPassword = GetHashedPassword(model.Password, salt);
+
+            var user = new User
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                Salt = salt,
+                HashedPassword = hashedPassword,
+                DateOfBirth = model.DateOfBirth
+            };
+
+            var createdUser = await _userRepository.Add(user);
+            return createdUser.Id;
+
         }
 
         public Task<bool> ValidateUser(string email, string password)
