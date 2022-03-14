@@ -8,7 +8,7 @@
             @foreach (var movie in Model?.Data)
             {
                 <div class="col-6 col-lg-3 col-sm-4 col-xl-2">
-                    @*<partial name="MovieCard" model="movie"/>*@
+                    @*partial name="MovieCard" model="movie"*@
                     @await Html.PartialAsync("_MovieCard", movie)
                 </div>
             }
