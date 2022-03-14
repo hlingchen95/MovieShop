@@ -41,6 +41,7 @@ namespace MovieShopMVC.Controllers
             var userLogedIn = await _accountService.ValidateUser(model.Email, model.Password);
             if (userLogedIn)
             {
+                
                 return LocalRedirect("~/");
             }
             else
