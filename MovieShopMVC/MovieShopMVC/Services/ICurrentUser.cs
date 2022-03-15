@@ -5,8 +5,8 @@
         bool IsAuthenticated { get; }
         int UserId { get; }
         string Email { get; }
-        string Firstname { get; }
-        string Lastname { get; }
+        string FirstName { get; }
+        string LastName { get; }
         bool IsAdmin { get; }
         List<string> Roles { get; }
         string IpAddress { get; }
