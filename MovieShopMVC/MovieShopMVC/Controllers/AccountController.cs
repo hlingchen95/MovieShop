@@ -1,6 +1,9 @@
 ﻿using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MovieShopMVC.Controllers
 {
@@ -39,9 +42,24 @@ namespace MovieShopMVC.Controllers
         public async Task<IActionResult> Login(LoginModel model)
         {
             var userLogedIn = await _accountService.ValidateUser(model.Email, model.Password);
-            if (userLogedIn)
+            if (userLogedIn != null)
             {
-                
+                var claims = new List<Claim>
+                {
+                    new Claim( ClaimTypes.Email, userLogedIn.Email),
+                    new Claim( ClaimTypes.NameIdentifier, userLogedIn.Id.ToString()),
+                    new Claim( ClaimTypes.GivenName, userLogedIn.FirstName),
+                    new Claim( ClaimTypes.Surname, userLogedIn.LastName),
+                    new Claim( ClaimTypes.DateOfBirth, userLogedIn.DateOfBirth.ToShortDateString()),
+                    new Claim( "FullName", userLogedIn.FirstName + " " + userLogedIn.LastName),
+                    new Claim( "Language", "en"),
+
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
                 return LocalRedirect("~/");
             }
             else
