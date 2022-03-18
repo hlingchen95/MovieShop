@@ -9,10 +9,15 @@ namespace MovieShopMVC.Controllers
     public class HomeController : Controller
     {
         private readonly IMovieService _movieService;
+
+
+
         public HomeController(IMovieService movieService)
         {
-            _movieService = movieService; 
+            _movieService = movieService;
+            
         }
+
         
         [HttpGet]
         public async Task<IActionResult> Index()

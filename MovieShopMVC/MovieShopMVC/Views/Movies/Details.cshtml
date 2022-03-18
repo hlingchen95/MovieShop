@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-
+    
 <div class="city">
     <div class="grid-container">
         <div class="row align-content-center">
@@ -41,12 +41,40 @@
                     <button class="btn btn-primary btn-sm" type="button">Review</button>
                     <button class="btn btn-secondary btn-sm" type="button">Buy</button>
                 </div>
+                <form asp-controller="User" asp-action="BuyMovie" method="post">
+                    <div class = "row-cols-1 pt-1">
+                        <button type="button" class = "btn btn-light" data-bs-toggle="metal" data-bs-target = "#buyModal">Buy $@Model.Price</button>
+                    </div>
+                    <div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby= "Buying" aria-hidden="true" style="color:black">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Buying">
+                                        Buying @Model.Title
+                                    </h5>
+                                    <input type="hidden" value="@Model.Id" name="MovieId" />
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    This movie cost $@Model.Price<br/>
+                                    Would you like to purchase?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <input type="submit" value="Purchase Movie" name="btnBuyMovie" class="btn btn-primary" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div> 
 </div>
 <div class = "row">
     <div class="col-5">
+        @*Movie Facts*@
         <h3>MOVIE FACTS</h3>
          <div class="d-flex flex-column bd-highlight mb-3">
             <div class="p-2 bd-highlight border-bottom">
@@ -67,6 +95,7 @@
             </div>
         </div>
         <br />
+        @*Trailers*@
         <h3>TRAILERS</h3>
         <div class="d-flex flex-column bd-highlight mb-3">
             @foreach(var traiter in Model.Trailers){
@@ -76,6 +105,7 @@
         </div>
     </div>
     <div class="col">
+        @*Casts*@
         <h3>CAST</h3>
           @foreach(var cast in Model.Casts)
           {

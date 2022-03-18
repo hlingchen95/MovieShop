@@ -12,9 +12,10 @@ namespace MovieShopMVC.Controllers
              _movieService = movieService;
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            ViewBag.MoviePurchsed = true;
             var movieDetails = await _movieService.GetMovieDetails(id);
             return View(movieDetails);
         }

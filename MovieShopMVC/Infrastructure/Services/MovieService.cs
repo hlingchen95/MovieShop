@@ -69,6 +69,11 @@ namespace Infrastructure.Services
             return movieDetails;
         }
 
+        public async Task<decimal> GetMoviePrice(int movieId)
+        {
+            return await _movieRepository.GetMoviePrice(movieId);
+        }
+
         public async Task<PagedResultSet<MovieCardModel>> GetMoviesByGenrePagination(int genreId, int pageSize = 30, int pageNumber = 1)
         {
             var pagedMovies = await _movieRepository.GetMoviesByGenres(genreId, pageSize, pageNumber);

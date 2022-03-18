@@ -25,7 +25,7 @@ namespace MovieShopMVC.Services
 
         public List<string> Roles => throw new NotImplementedException();
 
-        public string IpAddress => _contextAccessor.HttpContext?.Connection.RemoteIpAddress.ToString();
+        public string? IpAddress => _contextAccessor.HttpContext?.Connection.RemoteIpAddress.ToString();
 
     }
 }

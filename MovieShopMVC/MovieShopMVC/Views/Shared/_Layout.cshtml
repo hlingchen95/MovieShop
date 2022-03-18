@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +11,7 @@
     <link rel="stylesheet" href="~/MovieShopMVC.styles.css" asp-append-version="true" />
 </head>
 <body>
+  
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -27,6 +30,9 @@
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Comedy</a></li>
                                 <li><a class="dropdown-item" href="#">Horror</a></li>
+                             
+
+                               
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -36,6 +42,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                </div>
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2" asp-controller="Account" asp-action="Login">Login</button>
+                    <button type="button" class="btn btn-outline-light me-2" asp-controller="Account" asp-action="Register">Register</button>
                 </div>
             </div>
         </nav>
