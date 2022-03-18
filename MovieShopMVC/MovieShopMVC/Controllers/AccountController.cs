@@ -15,11 +15,13 @@ namespace MovieShopMVC.Controllers
         {
             _accountService = accountService;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();  
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel model)
         {

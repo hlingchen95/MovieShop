@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-
+    
 <div class="city">
     <div class="grid-container">
         <div class="row align-content-center">
@@ -39,14 +39,21 @@
             <div class="col">
                 <div class="d-grid gap-2 col-2 mx-auto">
                     <button class="btn btn-primary btn-sm" type="button">Review</button>
-                    <button class="btn btn-secondary btn-sm" type="button">Buy</button>
+                    @*<button class="btn btn-secondary btn-sm" type="button">Buy</button>*@
+                    
+                    <form asp-controller="User" asp-action="BuyMovie" method="post">                  
+                        <button type="button" class = "btn btn-secondary btn-sm" data-bs-toggle="metal" data-bs-target = "#buyModal">Buy $@Model.Price</button>
+                   
+                    </form>
                 </div>
+                
             </div>
         </div>
     </div> 
 </div>
 <div class = "row">
     <div class="col-5">
+        @*Movie Facts*@
         <h3>MOVIE FACTS</h3>
          <div class="d-flex flex-column bd-highlight mb-3">
             <div class="p-2 bd-highlight border-bottom">
@@ -67,6 +74,7 @@
             </div>
         </div>
         <br />
+        @*Trailers*@
         <h3>TRAILERS</h3>
         <div class="d-flex flex-column bd-highlight mb-3">
             @foreach(var traiter in Model.Trailers){
@@ -76,6 +84,7 @@
         </div>
     </div>
     <div class="col">
+        @*Casts*@
         <h3>CAST</h3>
           @foreach(var cast in Model.Casts)
           {

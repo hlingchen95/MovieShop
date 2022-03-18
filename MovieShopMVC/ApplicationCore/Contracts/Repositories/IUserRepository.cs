@@ -10,5 +10,11 @@ namespace ApplicationCore.Contracts.Repositories
     public interface IUserRepository : IRepository<User>
     {
         Task<User> GetUserByEmail(string email);
+        Task<List<Purchase>> GetPurchaseByUserId(int id);
+
+        Task<Purchase> AddPurchase(Purchase purchase);
+        Task<List<Favorite>> GetFavoritesByUserId(int id);
+
+
     }
 }
