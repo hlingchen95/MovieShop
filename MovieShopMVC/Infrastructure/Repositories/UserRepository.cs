@@ -36,6 +36,9 @@ namespace Infrastructure.Repositories
 
 
 
+
+        
+
         public async Task<User> GetUserByEmail(string email)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);

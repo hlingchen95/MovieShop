@@ -11,12 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class PurchaseRepository : EFRepository<Purchase>, IPurchaseRepository
+    public class PurchaseRepository: IPurchaseRepository
     {
-        public PurchaseRepository(MovieShopDbContext dbContext) : base(dbContext)
-        {
-        }
-
-       
     }
 }
