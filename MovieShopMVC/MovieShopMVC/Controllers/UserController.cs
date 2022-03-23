@@ -28,6 +28,7 @@ namespace MovieShopMVC.Controllers
             var userId = _currentUser.UserId;
             var purchases = await _userService.GetAllPurchasesForUser(userId);
             return View(purchases);
+        
         }
 
         [HttpGet]
@@ -36,6 +37,7 @@ namespace MovieShopMVC.Controllers
             var userId = _currentUser.UserId;
             var favoritesList = await _userService.GetAllFavoritesForUser(userId);
             return View(favoritesList);
+          
         }
 
         [HttpGet]
