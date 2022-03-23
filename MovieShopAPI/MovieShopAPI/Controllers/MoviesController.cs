@@ -29,6 +29,28 @@ namespace MovieShopAPI.Controllers
 
 
         }
+        [Route("")]
+        [HttpGet]
+        public async Task<IActionResult> PagedMovie()
+        {
+            var pagedMovies = await _movieServivce.GetTop30GrossingMovies();
+            if (pagedMovies == null)
+            {
+                return NotFound();
+            }
+            return Ok(pagedMovies);
+        }
 
+        [Route("genre/{genreId:int}")]
+        [HttpGet]
+        public async Task<IActionResult> Genre(int genreId)
+        {
+            var movies = await _movieServivce.GetMoviesByGenrePagination(genreId);
+            if (movies == null)
+            {
+                return BadRequest();
+            }
+            return Ok(movies);
+        }
     }
 }
