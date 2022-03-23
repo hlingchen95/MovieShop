@@ -29,6 +29,19 @@ namespace MovieShopAPI.Controllers
 
 
         }
+
+        [Route("top-grossing")]
+        [HttpGet]
+        public async Task<IActionResult> GetTopGrossingMovie()
+        {
+            var topGrossingMovie = await _movieServivce.GetTop30GrossingMovies();
+            if (topGrossingMovie == null)
+            {
+                return NotFound(new { error = $"Movie Not Found for id: " });
+            }
+            return Ok(topGrossingMovie);
+        }
+
         [Route("")]
         [HttpGet]
         public async Task<IActionResult> PagedMovie()
