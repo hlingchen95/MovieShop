@@ -58,6 +58,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//cors middleware
+app.UseCors( policyBuilder =>
+{
+    policyBuilder.WithOrigins(app.Configuration.GetValue<string>("clientUrl")).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
+});
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
